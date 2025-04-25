@@ -1,0 +1,10 @@
+body { font-family: Arial; margin: 0; padding: 0; }
+nav { background: #333; color: white; display: flex; justify-content: space-between; padding: 1em; align-items: center; }
+nav .logo { font-size: 1.5em; }
+nav ul { list-style: none; display: flex; gap: 1em; }
+nav ul li { display: inline; }
+nav button { cursor: pointer; padding: 0.5em; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; padding: 1em; }
+.product { border: 1px solid #ccc; padding: 1em; }
+.cart { padding: 1em; background: #f9f9f9; }
+.hidden { display: none; }

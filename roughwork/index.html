@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Store</title>
+  <style>
+    #products { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 320px; vertical-align: top; text-align: center; }
+    #img-products { object-fit: contain; }
+    #btn { margin: 5px; padding: 8px 12px; }
+    #cart-page { margin-top: 40px; }
+    .cart-item { border: 1px solid #ddd; padding: 10px; margin: 10px; display: flex; align-items: center; justify-content: space-between; }
+    .cart-controls button { margin: 0 5px; }
+  </style>
+</head>
+<body>
+
+  <center><h2 id="latest-products" style="font-size:40px;">Latest Products</h2></center>
+  <hr style="color: whitesmoke;">
+  <center>
+    <div id="buttons-container">
+      <button onclick="filterProducts('all')">All</button>
+      <button onclick="filterProducts('men\'s clothing')">Men's Clothing</button>
+      <button onclick="filterProducts('women\'s clothing')">Women's Clothing</button>
+      <button onclick="filterProducts('jewelery')">Jewelry</button>
+      <button onclick="filterProducts('electronics')">Electronics</button>
+    </div>
+  </center>
+
+  <div id="products-body"></div>
+
+  <h2 style="text-align:center;">🛒 Cart</h2>
+  <div id="cart-page"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

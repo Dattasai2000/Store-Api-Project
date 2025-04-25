@@ -1,0 +1,406 @@
+/* NavBar Starts Here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:whitesmoke;
+    padding: 1rem 2rem;
+    color:black;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .nav-links, .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color:black;
+    font-size: 1rem;
+  }
+
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+
+  .nav-buttons button {
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .login-btn {
+    background-color:whitesmoke;
+    color: black;
+  }
+
+  .Register-btn {
+    background-color:whitesmoke;
+    color: black;
+  }
+
+  .cart-btn {
+    background-color:whitesmoke;
+    color: black;
+  }
+ /* Responsive Media Queries */
+
+/* Mobile Devices (≤ 600px) */
+
+
+
+
+@media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+  
+    .nav-links,
+    .nav-buttons {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  
+    .nav-links a,
+    .nav-buttons button {
+      width: 100%;
+      text-align: left;
+    }
+  
+    .logo {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Tablets (601px–1024px) */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem 2rem;
+    }
+  
+    .nav-links,
+    .nav-buttons {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+  
+    .logo {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Laptops (1025px–1440px) */
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    nav {
+      padding: 1.2rem 3rem;
+    }
+  
+    .nav-links a {
+      font-size: 1.1rem;
+    }
+  
+    .nav-buttons button {
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
+  /* Large Screens (≥ 1441px) */
+  @media (min-width: 1441px) {
+    nav {
+      padding: 1.5rem 5rem;
+    }
+  
+    .logo {
+      font-size: 2rem;
+    }
+  
+    .nav-links a {
+      font-size: 1.2rem;
+    }
+  
+    .nav-buttons button {
+      font-size: 1rem;
+      padding: 0.7rem 1.5rem;
+    }
+  }
+  /* Nav Ends Here */
+  /* Banner-Image Strats */
+  .image-container{
+    position: relative;
+    display: inline-block;
+  }
+  .image-container img{
+    display: block;
+  }
+  .text-overlay{
+    position: absolute;
+    top: 45%; 
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    font-style: normal;
+  }
+   /* Media Queries */
+
+    /* Extra Large Screens (Desktops/Large Monitors) */
+    @media screen and (min-width: 1200px) {
+        .text-overlay h2 {
+          font-size: 40px;
+        }
+        .text-overlay p {
+          font-size: 25px;
+        }
+      }
+  
+      /* Laptops / Desktops */
+      @media screen and (min-width: 992px) and (max-width: 1199px) {
+        .text-overlay h2 {
+          font-size: 2.5em;
+        }
+        .text-overlay p {
+          font-size: 1.2em;
+        }
+      }
+  
+      /* Tablets */
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        .text-overlay h2 {
+          font-size: 2em;
+        }
+        .text-overlay p {
+          font-size: 1.1em;
+        }
+      }
+  
+      /* Mobile Phones */
+      @media screen and (max-width: 767px) {
+        .text-overlay {
+          top: 40%;
+          width: 90%;
+          padding: 5px;
+        }
+        .text-overlay h2 {
+          font-size: 1.0em;
+        }
+        .text-overlay p {
+          font-size: 0.80em;
+        }
+      }
+  /* Banner Image Ends Here */
+  /* All products styles */
+  #buttons-container button {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+  }
+  #products-body {
+    display: grid;
+    gap: 20px;
+    justify-content:center;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    
+  }
+  #products {
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    text-align: center;
+    border-radius: 10px;
+  }
+ #price{
+  color:gray;
+ }
+ #btn{
+  height: 25px;
+  width: 100px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+ }
+ /* Tablets (768px - 1024px): 2 cards per row */
+@media screen and (max-width: 1024px) {
+  #products-body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile devices (less than 768px): 1 card per row */
+@media screen and (max-width: 767px) {
+  #products-body {
+    grid-template-columns: 1fr;
+  }
+
+  #buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #buttons-container button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Optional: For ultra-wide screens (more than 1400px), still only 3 cards per row */
+@media screen and (min-width: 1400px) {
+  #products-body {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+/* Footer */
+#footer{
+  margin-top: 20px;
+}
+/* About-Page */
+.header-about{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+#paragraph{
+  padding: 50px;
+}
+.our-products{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-divivson{
+  height: 250px;
+  width: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.products-division
+{
+  height: 250px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+#footer-about
+{
+  margin-top: 50px;
+}
+/* About-Page Ends */
+/* Contact Page Starts */
+#contact{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.form{
+  /* display: flex; */
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 50px;
+}
+#input-form{
+  height: 30px;
+  width: 300px;
+}
+#input-form1{
+  height: 100px;
+  width: 300px;
+}
+#button-form{
+  background-color: darkgray;
+  color: white;
+  height: 30px;
+  width: 80px;
+}
+
+/* Tablets (768px to 1024px) */
+@media screen and (max-width: 1024px) {
+  #input-form, #input-form1 {
+    width: 250px;
+  }
+
+  #button-form {
+    width: 80px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile devices (up to 767px) */
+@media screen and (max-width: 767px) {
+  #input-form, #input-form1 {
+    width: 90%;
+  }
+
+  #button-form {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .form {
+    padding: 0 10px;
+  }
+
+  #contact {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+/* Extra-large screens (1400px and above) */
+@media screen and (min-width: 1400px) {
+  #input-form, #input-form1 {
+    width: 350px;
+  }
+
+  #button-form {
+    width: 100px;
+  }
+}
+/* Contact Page Ends */
+/* Login Starts */
+
+/* Cart Ends */
