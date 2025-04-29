@@ -1,72 +1,129 @@
-const cartContainer = document.getElementById('cart-container');
-const totalItemsEl = document.getElementById('total-items');
-const subtotalEl = document.getElementById('subtotal');
-const totalAmountEl = document.getElementById('total-amount');
-const productSummaryEl = document.getElementById('product-summary');
-const shipping = 30;
+// load cart data from localStorage
+let cartData = JSON.parse(localStorage.getItem("trendmall")) || [];
+if (!Array.isArray(cartData)) cartData = [cartData];
+cartData = cartData.map((item) => ({ ...item, quantity: item.quantity || 1 }));
 
-let cart = JSON.parse(localStorage.getItem('cart')) || {};
+// COMBINE DUPLICATES based on product id (or title if no id)
+let combinedCartData = [];
 
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+cartData.forEach((item) => {
+  const existingItem = combinedCartData.find(
+    (product) => product.id === item.id // assuming "id" is unique for a product
+  );
+  if (existingItem) {
+    existingItem.quantity += item.quantity;
+  } else {
+    combinedCartData.push({ ...item });
+  }
+});
+
+cartData = combinedCartData;
+console.log( combinedCartData.length);
+
+
+const productContainer = document.getElementById("product");
+let maincart = document.getElementById("maincart");
+
+// check if cart is empty
+if (cartData.length === 0) {
+  maincart.innerHTML = `
+    <div class="text-center mb-5 p-4 bg-light">
+      <h2>Your Cart is Empty</h2>
+      <a href="./product.html" class="btn btn-outline-dark mt-3">
+        <i class="fas fa-arrow-left"></i> Continue Shopping
+      </a>
+    </div>
+  `;
 }
 
+// update cart count
+
+// update summary
 function updateSummary() {
-  let totalItems = 0;
-  let subtotal = 0;
-  productSummaryEl.innerHTML = '';
-
-  Object.values(cart).forEach(item => {
-    totalItems += item.quantity;
-    subtotal += item.price * item.quantity;
-
-    const productDiv = document.createElement('div');
-    productDiv.textContent = `${item.title.slice(0, 30)}... x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`;
-    productSummaryEl.appendChild(productDiv);
+  const summaryBox = document.getElementById("summary");
+  let totalQuantity = 0,
+    totalPrice = 0,
+    shipping = 30;
+  cartData.forEach((i) => {
+    totalQuantity += i.quantity;
+    totalPrice += i.price * i.quantity;
   });
-
-  totalItemsEl.textContent = totalItems;
-  subtotalEl.textContent = subtotal.toFixed(2);
-  totalAmountEl.textContent = (subtotal + (totalItems > 0 ? shipping : 0)).toFixed(2);
+  summaryBox.innerHTML = `
+    <div class="card shadow-sm p-3">
+      <h5 class="border-bottom pb-2">Order Summary</h5>
+      <p>Products (${totalQuantity})<span class="float-end">$${totalPrice.toFixed(2)}</span></p>
+      <p>Shipping<span class="float-end">$${shipping.toFixed(2)}</span></p>
+      <p class="fw-bold">Total Amount<span class="float-end">$${(totalPrice + shipping).toFixed(2)}</span></p>
+      <button class="btn btn-dark w-100 mt-2">Go to checkout</button>
+    </div>
+  `;
 }
 
-function renderCart() {
-  cartContainer.innerHTML = '';
+// render products
+function renderCartItems() {
+  productContainer.innerHTML = "";
 
-  if (Object.keys(cart).length === 0) {
-    cartContainer.innerHTML = '<p class="empty">Your cart is empty.</p>';
-    updateSummary();
+  if (cartData.length === 0) {
+    maincart.innerHTML = `
+      <div class="text-center mb-5 p-4 bg-light">
+        <h2>Your Cart is Empty</h2>
+        <a href="./product.html" class="btn btn-outline-dark mt-3">
+          <i class="fas fa-arrow-left"></i> Continue Shopping
+        </a>
+      </div>
+    `;
     return;
   }
 
-  Object.values(cart).forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'cart-item';
+  cartData.forEach((item, idx) => {
+    const div = document.createElement("div");
+    div.className = "cart-item shadow-sm";
     div.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" />
-      <h4>${item.title}</h4>
-      <p>Price: $${(item.price * item.quantity).toFixed(2)}</p>
-      <div class="qty-buttons">
-        <button onclick="changeQuantity(${item.id}, -1)">−</button>
-        <span>${item.quantity}</span>
-        <button onclick="changeQuantity(${item.id}, 1)">+</button>
+    <div class="d-flex gap-3 mb-4 align-items-start">
+      
+      <!-- Product Image -->
+      <img src="${item.image}" alt="${item.title}" 
+           class="product-img rounded" 
+           style="width: 80px; height: auto; flex-shrink: 0;">
+      
+      <!-- Product Details -->
+      <div class="flex-grow-1">
+        <!-- Product Title -->
+        <h6 class="fw-semibold text-break mb-1">${item.title}</h6>
+        
+        <!-- Quantity Controls -->
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <button class="bg-transparent border-0 fw-bold fs-5" onclick="changeQuantity(${idx}, -1)">−</button>
+          <span class="fw-bold">${item.quantity}</span>
+          <button class="bg-transparent border-0 fw-bold fs-5" onclick="changeQuantity(${idx}, 1)">+</button>
+        </div>
+        
+        <!-- Price Line -->
+        <div class="text-muted">
+          ${item.quantity} × $${item.price.toFixed(2)}
+        </div>
       </div>
-    `;
-    cartContainer.appendChild(div);
+      
+    </div>
+  `;
+  
+    productContainer.appendChild(div);
   });
-
   updateSummary();
+  localStorage.setItem("trendmall", JSON.stringify(cartData));
 }
 
-function changeQuantity(id, delta) {
-  if (cart[id]) {
-    cart[id].quantity += delta;
-    if (cart[id].quantity <= 0) {
-      delete cart[id];
-    }
-    saveCart();
-    renderCart();
+// change quantity
+function changeQuantity(index, delta) {
+  cartData[index].quantity += delta;
+  if (cartData[index].quantity <= 0) {
+    cartData.splice(index, 1);
   }
+  renderCartItems();
 }
 
-renderCart();
+// initial render
+renderCartItems();
+// update the cart value
+const cartCount = document.getElementById("Cart");
+cartCount.innerHTML = `<i class="fas fa-shopping-cart"></i>Cart(${combinedCartData.length})`;

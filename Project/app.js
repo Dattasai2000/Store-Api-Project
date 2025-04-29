@@ -1,119 +1,112 @@
-// let allProducts = [];
+// Fetching data from the API
+// and displaying it on the page
+let productsContainer = document.getElementById("products");
+let All = document.getElementById("All");
+let Men_clothing = document.getElementById("Men_clothing");
+let Women_clothing = document.getElementById("Women_clothing");
+let Jewelery = document.getElementById("Jewelery");
+let Electronics = document.getElementById("Electronics");
 
-//     async function dataproducts() {
-//       let response = await fetch("https://fakestoreapi.com/products");
-//       let products = await response.json();
-//       allProducts = products; // Save for filtering
-//       displayProducts(allProducts);
-//     }
-
-//     function displayProducts(products) {
-//       const container = document.getElementById('products-body');
-//       container.innerHTML = ''; // Clear existing content
-//       products.forEach(item => {
-//         container.innerHTML += `
-//           <div id='products'>
-//             <img src="${item.image}" id="img-products" height="300px" width="300px">
-//             <h1>${item.title.slice(0, 12)}...</h1>
-//             <p>${item.description.slice(0, 100)}...</p>
-//             <hr>
-//            <p id="price">$${item.price}</p>
-//            <hr>
-//             <button id="btn">Details</button>
-//             <button id="btn">Add to cart</button>
-//           </div>
-//         `;
-//       });
-//     }
-
-//     function filterProducts(category) {
-//       if (category === 'all') {
-//         displayProducts(allProducts);
-//       } else {
-//         const filtered = allProducts.filter(item => item.category === category);
-//         displayProducts(filtered);
-//       }
-//     }
-
-//     dataproducts();
-let allProducts = [];
-let cart = [];
-
-async function dataproducts() {
-  let response = await fetch("https://fakestoreapi.com/products");
-  let products = await response.json();
-  allProducts = products;
-  displayProducts(allProducts);
+let jsondata;
+async function products() {
+  let productdata = fetch("https://fakestoreapi.com/products");
+  let data = await productdata;
+  jsondata = await data.json();
+  console.log(jsondata);
+  productdetails(jsondata);
 }
-
-function displayProducts(products) {
-  const container = document.getElementById('products-body');
-  container.innerHTML = '';
-  products.forEach(item => {
-    container.innerHTML += `
-      <div id='products'>
-        <img src="${item.image}" id="img-products" height="300px" width="300px">
-        <h1>${item.title.slice(0, 12)}...</h1>
-        <p>${item.description.slice(0, 100)}...</p>
-        <hr>
-        <p id="price">$${item.price}</p>
-        <hr>
-        <button id="btn">Details</button>
-        <button id="btn" onclick="addToCart(${item.id})">Add to cart</button>
+function productdetails(data) {
+  data.map((product) => {
+    let div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+    <div class="card text-center d-flex flex-column">
+      <img src="${product.image}" class="card-img-top p-3 product-image" alt="${
+      product.title
+    }">
+      <div class="card-body flex-grow-1 d-flex flex-column justify-content-between">
+        <h5 class="card-title">${product.title.slice(0, 12)}...</h5>
+        <p class="card-text">${product.description.slice(0, 90)}...</p>
       </div>
-    `;
+      <div class="product-price w-100 text-center border-top border-bottom p-2  text-secondary">
+        $${product.price}
+      </div>
+      <div class=" d-flex justify-content-center">
+        <button class="btn btn-dark  m-3 " id="cardbutton">Details</button>
+        <button class="btn btn-dark  m-3 " id="cardbutton" onclick=addcart(${product.id})>Add to Cart</button>
+      </div> 
+    </div>
+  `;
+    productsContainer.appendChild(div);
   });
 }
+products();
 
-function filterProducts(category) {
-  if (category === 'all') {
-    displayProducts(allProducts);
-  } else {
-    const filtered = allProducts.filter(item => item.category === category);
-    displayProducts(filtered);
-  }
-}
+All.addEventListener("click", function () {
+  productsContainer.innerHTML = "";
+  productdetails(jsondata);
+});
 
-function addToCart(productId) {
-  const product = allProducts.find(p => p.id === productId);
-  const existing = cart.find(item => item.id === productId);
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-  renderCart();
-}
-
-function renderCart() {
-  const cartContainer = document.getElementById('cart-page');
-  cartContainer.innerHTML += '';
-  cart.forEach(item => {
-    const total = (item.price * item.quantity).toFixed(2);
-    cartContainer.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.image}" width="50" height="50">
-        <span>${item.title.slice(0, 15)}...</span>
-        <span>$${item.price}</span>
-        <div class="cart-controls">
-          <button onclick="updateQuantity(${item.id}, -1)">-</button>
-          <span>${item.quantity}</span>
-          <button onclick="updateQuantity(${item.id}, 1)">+</button>
-        </div>
-        <strong>Total: $${total}</strong>
-      </div>
-    `;
+Men_clothing.addEventListener("click", function () {
+  productsContainer.innerHTML = " ";
+  let mendata = [];
+  jsondata.map((product) => {
+    if (product.category === Men_clothing.innerText.toLocaleLowerCase()) {
+      mendata.push(product);
+    }
   });
-}
+  productdetails(mendata);
+});
 
-function updateQuantity(productId, change) {
-  const item = cart.find(p => p.id === productId);
-  if (!item) return;
-  item.quantity += change;
-  if (item.quantity < 1) {
-    cart = cart.filter(p => p.id !== productId);
-  }
-  renderCart();
-}
+Women_clothing.addEventListener("click", function () {
+  productsContainer.innerHTML = " ";
+  let data = jsondata.filter((product) => {
+    return product.category === Women_clothing.innerText.toLocaleLowerCase();
+  });
 
-dataproducts();
+  productdetails(data);
+});
+Electronics.addEventListener("click", function () {
+  productsContainer.innerHTML = " ";
+  let data = jsondata.filter((product) => {
+    return product.category === Electronics.innerText.toLocaleLowerCase();
+  });
+
+  productdetails(data);
+});
+Jewelery.addEventListener("click", function () {
+  productsContainer.innerHTML = " ";
+  let data = jsondata.filter((product) => {
+    return product.category === Jewelery.innerText.toLocaleLowerCase();
+  });
+
+  productdetails(data);
+});
+
+document.getElementById("Login").addEventListener("click", function () {
+  window.location.href = "./login.html";
+});
+document.getElementById("Register").addEventListener("click", function () {
+  window.location.href = "./Register.html";
+});
+document.getElementById("Cart").addEventListener("click", function () {
+  window.location.href = "./Cart.html";
+});
+
+
+let data = [];
+function addcart(id)
+{
+ let tempdata= jsondata.find((item)=>item.id==id);
+ data.push(tempdata);
+ localStorage.setItem("trendmall", JSON.stringify(data));
+ totalAmount();
+}
+function totalAmount() {
+  let Amount = data.reduce((acc, price) => acc + price.price, 0);
+  console.log(Amount); 
+}
+ 
+let cartData = JSON.parse(localStorage.getItem("trendmall")) || [];
+const cartCount = document.getElementById("Cart");
+ cartCount.innerHTML = `<i class="fas fa-shopping-cart"></i>Cart(${cartData.length})`;
