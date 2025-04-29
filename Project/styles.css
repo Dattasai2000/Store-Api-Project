@@ -198,6 +198,10 @@ img.product-img {
   box-shadow: 2px 2px gray;
   margin-bottom: 20px;
 }
+#words{
+  display: grid;
+  justify-content: center;
+}
 /* About Page Ends */
 /* Contact Starts */
 #button-form{
