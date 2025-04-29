@@ -1,0 +1,303 @@
+@media (max-width: 768px) {
+    header {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 0;
+      margin: 0px 30px;
+      padding-bottom: 10px;
+    }
+  
+    .nav-buttons i {
+      margin-right: 5px;
+      font-size: 10;
+    }
+    .nav-buttons button {
+      margin-left: 1px;
+      padding: 2px;
+      font-size: 6px;
+      height: 25px;
+    }
+    #product {
+      height: auto;
+    }
+    .product button {
+      height: fit-content;
+      font-size: 8px;
+    }
+  
+    .cart-item h5{
+  
+      font-size: 12px;
+      width: 50px;
+    }
+  }
+  
+  @media (max-width: 425px) {
+    .Threelineicon {
+      display: block;
+      font-size: 10px;
+    }
+    header {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0px 15px 5px 10px;
+      height: auto;
+      font-size: 10px;
+    }
+  
+    .nav-buttons button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      height: 15px;
+      border-radius: 3px;
+      margin-right: 3px;
+    }
+    .search-bar:checked + .Threelineicon ~ nav {
+      display: flex;
+    }
+  
+    header nav {
+      display: none;
+      gap: 15px;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      padding: 10px;
+      background-color: teal;
+      border-radius: 5px;
+    }
+  
+    header nav a {
+      color: rgb(245, 245, 245);
+      border-bottom: 1px solid;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .section-title {
+      margin: 5px 0px 30px;
+    }
+    .filters {
+      margin: 5px 0px;
+      padding-bottom: 20px;
+    }
+  
+    .filters button {
+      font-size: 10px;
+      padding: 2px 5px;
+      margin: 2px;
+    }
+  
+    .banner h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .banner p {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  
+    #products {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin: 0px 2px 150px;
+      padding: 0 5px;
+    }
+    .product-image {
+      height: 100px;
+      width: 100%;
+      object-fit: fill;
+    }
+    .product button {
+      height: fit-content;
+      font-size: 8px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .Threelineicon {
+      display: block;
+      font-size: 10px;
+    }
+    header {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0px 15px 5px 10px;
+      height: auto;
+      font-size: 10px;
+    }
+  
+    .nav-buttons button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      height: 15px;
+      border-radius: 2px;
+      margin-right: 3px;
+    }
+    .search-bar:checked + .Threelineicon ~ nav {
+      display: flex;
+    }
+  
+    header nav {
+      display: none;
+      gap: 15px;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      padding: 10px;
+      background-color: teal;
+      border-radius: 5px;
+    }
+  
+    header nav a {
+      color: rgb(245, 245, 245);
+      border-bottom: 1px solid;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .section-title {
+      margin: 5px 0px 30px;
+    }
+    .filters {
+      margin: 5px 0px;
+      padding-bottom: 20px;
+    }
+  
+    .filters button {
+      font-size: 7px;
+      padding: 2px 5px;
+      margin: 2px;
+    }
+  
+    .banner h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .banner p {
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+  
+    #products {
+      width: 100%;
+      grid-template-columns: 1fr;
+      margin: 0px 2px 150px;
+      padding: 0 5px;
+    }
+    .product-image {
+      height: 200px;
+      width: 100%;
+      object-fit: fill;
+    }
+    .product button {
+      margin: 2px;
+      padding: 2px 5px;
+    }
+  }
+  
+  @media (max-width: 325px) {
+    .Threelineicon {
+      display: block;
+      font-size: 10px;
+    }
+    header {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0px 10px 5px 10px;
+      height: auto;
+    }
+  
+    .nav-buttons button {
+      padding: 1px 1px;
+      height: min-content;
+      border-radius: 2px;
+      margin-right: 3px;
+    }
+    .search-bar:checked + .Threelineicon ~ nav {
+      display: flex;
+    }
+  
+    header nav {
+      display: none;
+      gap: 15px;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      padding: 10px;
+      background-color: teal;
+      border-radius: 5px;
+    }
+  
+    header nav a {
+      color: rgb(245, 245, 245);
+      border-bottom: 1px solid;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .section-title {
+      margin: 5px 0px 20px;
+    }
+    .filters {
+      margin: 5px 0px;
+    }
+  
+    .filters button {
+      font-size: 7px;
+      padding: 2px 5px;
+      margin: 2px;
+    }
+  
+    .banner h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .banner p {
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+  
+    #products {
+      width: 100%;
+      grid-template-columns: 1fr;
+      margin: 0px 2px 150px;
+      padding: 0 5px;
+    }
+    .product-image {
+      height: 150px;
+      width: 100%;
+      object-fit: fill;
+    }
+    .product button {
+      margin: 2px;
+      padding: 2px 5px;
+    }
+   
+   
+  }
